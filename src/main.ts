@@ -14,6 +14,7 @@ const group = makeGroup("someName", "", [
   makeField("jobTitle", "select", "Должность", {
     validator: string().nullable(),
   }),
+  //TODO: если добавить дженерик то ломается тип валидатора
   makeField("address", "input", "адрес", {
     validator: lazy((_, options) => {
       if (options.parent?.someName) {

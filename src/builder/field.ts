@@ -1,11 +1,7 @@
+import { Schema } from "yup";
 import { FieldType, FormField, Option } from "../types";
 
-// TODO: Заменить дженерики валидатора на typeof   да и все?
-type ArgumentTypes<F extends Function> = F extends (...args: infer A) => any
-  ? A
-  : any;
-
-interface MakeFieldOptions<TValidator = Function> {
+interface MakeFieldOptions<TValidator = Schema> {
   options?: Option[];
   required?: boolean;
   defaultValue?: string;
@@ -13,13 +9,14 @@ interface MakeFieldOptions<TValidator = Function> {
   validator?: TValidator;
 }
 
-export function makeField<TValidator = Function>(
-  name: string,
+export function makeField<TForm, TValidator = Schema>(
+  name: keyof TForm,
   type: FieldType,
   label: string,
   options: MakeFieldOptions<TValidator>
 ): FormField {
   return {
+    // TODO: тип never
     name,
     type,
     label,
