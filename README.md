@@ -2,8 +2,8 @@
 
 Library for make forms and form components.
 
-# Methods of a library
+## Function of a library
 
-- `makeGroup`: a method return a form config and an object schema validation
-- `makeField`: a method return a object config for a field of form
-- `makeGroup`: a method return a group for a form
+- `makeForm`: a function return a form config and an object schema validation
+- `makeField`: a function return a object config for a field of form
+- `makeGroup`: a function return a group for a form
