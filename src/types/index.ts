@@ -1,3 +1,5 @@
+import { Schema } from "yup";
+
 export type FieldType = "input" | "select";
 
 export interface Option<TOption = string> {
@@ -5,16 +7,16 @@ export interface Option<TOption = string> {
   value: TOption;
 }
 
-export interface FormField<TValidator = Function> {
+export interface FormField<TForm extends object = {}> {
   //TODO: типизировать name или нет?
-  name: string;
+  name: keyof TForm;
   type: FieldType;
   label: string;
   options?: Option[];
   required?: boolean;
   defaultValue?: string;
   hidden?: boolean;
-  validator?: TValidator;
+  validator?: Schema;
 }
 
 export interface FormGroup {
