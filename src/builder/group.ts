@@ -1,9 +1,11 @@
-import { FormEntities, FormGroup } from "../types";
+import { FormEntity, FormGroup } from "../types";
 
-export function makeGroup(name: string, id: string, children?: FormEntities[]) {
+export function makeGroup<TForm, K extends keyof TForm>(
+  name: K,
+  children: FormEntity<TForm[K], any>[]
+) {
   return {
     name,
-    id,
     children,
-  } as FormGroup;
+  } as FormGroup<TForm, K>;
 }

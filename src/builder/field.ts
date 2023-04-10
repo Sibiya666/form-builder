@@ -9,17 +9,17 @@ interface MakeFieldOptions<TValidator = Schema> {
   validator?: TValidator;
 }
 
-export function makeField<TForm, TValidator = Schema>(
-  name: keyof TForm,
+export function makeField<TForm, K extends keyof TForm, TValidator = Schema>(
+  name: K,
   type: FieldType,
   label: string,
   options: MakeFieldOptions<TValidator>
-): FormField {
+): FormField<TForm, K> {
   return {
     // TODO: тип never
     name,
     type,
     label,
     ...options,
-  } as FormField;
+  } as FormField<TForm, K>;
 }
